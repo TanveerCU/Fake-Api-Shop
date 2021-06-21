@@ -1,8 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
+
 import Paper from '@material-ui/core/Paper';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -15,21 +14,10 @@ import PaymentForm from './PaymentForm';
 import Review from './Review';
 import { useSelector } from 'react-redux';
 import { useEffect,useState } from 'react';
+import PlaceOrder from './PlaceOrder';
 
 
 
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -74,13 +62,13 @@ export default function Checkout() {
 
 const address = useSelector(state => state.formAddress);
 const payment = useSelector(state => state.formPayment);
-console.log("shipment info: ",address);
-console.log("payment info: ",payment);
+
 
   const classes = useStyles();
   const [activeStep, setActiveStep] = useState(0);
   const [click, setclick] = useState(false);
   const [render, setrender] = useState(false);
+  console.log("step inside checkout: ",activeStep);
 
 
   const steps = ['Shipping address', 'Payment details', 'Review your order'];
@@ -103,6 +91,9 @@ console.log("payment info: ",payment);
     console.log("render");
     setclick(true);
     setrender(!render);
+    if(activeStep === 2){
+      setActiveStep(activeStep + 1);
+    }
   };
 
   const handleBack = () => {
@@ -145,15 +136,7 @@ console.log("payment info: ",payment);
           </Stepper>
           <React.Fragment>
             {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
-                </Typography>
-              </React.Fragment>
+              <PlaceOrder/>
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep,click,render)}
@@ -176,7 +159,6 @@ console.log("payment info: ",payment);
             )}
           </React.Fragment>
         </Paper>
-        {/* <Copyright /> */}
       </main>
     </React.Fragment>
   );

@@ -14,6 +14,18 @@ const show = {
     products:[]
 }
 
+
+const invoiceData = {
+    data:[]
+}
+
+const tempinvoiceData = {
+    cartData:[],
+    shippingAddress:[],
+    cardData:[],
+    total:''
+}
+
 export const productReducer =(state = initialState, {type,payload})=>{
     switch (type) {
         case ActionTypes.SET_PRODUCTS:
@@ -66,9 +78,18 @@ export const formPayment = (state = {} ,{type,payload})=>{
 
 }
 
-export const formInvoice = (state = {} ,{type,payload})=>{
+export const formInvoice = (state = invoiceData ,{type,payload})=>{
     switch (type) {
         case ActionTypes.FORM_INVOICE:
+            return {...state, data: payload};
+        default:
+            return state;
+    }
+
+}
+export const formtemporaryInvoice = (state = tempinvoiceData ,{type,payload})=>{
+    switch (type) {
+        case ActionTypes.TEMP_FORM_INVOICE:
             return {...state,...payload};
         default:
             return state;

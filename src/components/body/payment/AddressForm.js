@@ -105,7 +105,7 @@ export default function AddressForm({click,render}) {
         <Grid item xs={12}>
           <TextField
             required
-            label="Address line 1"
+            label="Address"
             fullWidth
             onChange = { (e)=>{setaddress(e.target.value)} }
             value={address}

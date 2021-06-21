@@ -51,3 +51,10 @@ export const invoice =(data)=>{
         payload: data
     }
 };
+
+export const tempInvoice =(data)=>{
+    return{
+        type: ActionTypes.TEMP_FORM_INVOICE,
+        payload: data
+    }
+};

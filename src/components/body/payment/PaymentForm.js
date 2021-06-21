@@ -4,10 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { useState, useEffect } from 'react';
 import FillMessage from '../../utils/FillMessage';
-import { useDispatch } from 'react-redux';
+import { useDispatch,useSelector } from 'react-redux';
 import { paymentInfo } from '../../../redux/actions/productAction';
 
 export default function PaymentForm({click,render}) {
+  console.log("payment render");
 
     const [ccName, setccName] = useState('');
     const [ccNumber, setccNumber] = useState('');
@@ -16,6 +17,9 @@ export default function PaymentForm({click,render}) {
     const [address, setaddress] = useState('');
     const [allFill, setallFill] = useState(false);
     const dispatch = useDispatch();
+    const cardAddress = useSelector(state => state.formAddress);
+
+    
 
     const check=()=>{
       if(ccName==='' || ccNumber===''|| ccExpr===''|| ccv===''|| address==='')
@@ -43,6 +47,8 @@ export default function PaymentForm({click,render}) {
       check();
       console.log("checked");
     }
+    if(cardAddress.checkBox){setaddress("filled")}
+
   }, [click,render]); 
 
 
@@ -88,13 +94,19 @@ export default function PaymentForm({click,render}) {
           />
         </Grid>
         <Grid item xs={12}>
+          {
+            (cardAddress.checkBox) ?
+            ""
+            :
           <TextField
             required
-            label="Address line 1"
+            label="Address "
             fullWidth
             onChange = { (e)=>{setaddress(e.target.value)} }
             value={address}
           />
+          
+          }
         </Grid>
       </Grid>
       <FillMessage clicked={click} rendered={allFill}/>
