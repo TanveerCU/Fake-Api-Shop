@@ -58,3 +58,17 @@ export const tempInvoice =(data)=>{
         payload: data
     }
 };
+
+export const signIn =(data)=>{
+    return{
+        type: ActionTypes.SIGNIN,
+        payload: data
+    }
+}
+
+export const signUp =(data)=>{
+    return{
+        type: ActionTypes.SIGNUP,
+        payload: data
+    }
+}

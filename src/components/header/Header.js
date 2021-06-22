@@ -48,7 +48,7 @@ function Header() {
 
     const products = useSelector(state => state.cartList.products)
     const item = Object.keys(products).length;
-    console.log("Header",products);
+    // console.log("Header",products);
   
     const {name, loggedin} = user;
   
@@ -69,11 +69,9 @@ function Header() {
                     </Badge>
                 </Link> 
                 
-                    {
+                    {/* {
                     loggedin ?
                     <div className="flex items-center space-x-2" onClick={()=>{setuser((state) =>{return ({...state,loggedin:!state.loggedin})})}} >
-
-
                     <StyledBadge
                     overlap="circle"
                     anchorOrigin={{
@@ -81,23 +79,22 @@ function Header() {
                     horizontal: 'right',
                     }}
                     variant="dot">
-
                     <i className="fas fa-user-circle text-lg sm:text-2xl"></i> 
-
                     </StyledBadge>
-
-
-
-
-
                     <span className="font-bold sm:text-semibold">{name}</span>
                     </div> 
-                    :
+                    : */}
+
+
+                    <Link to="/signin">
                     <div className="flex items-center space-x-2" onClick={()=>{setuser((state) =>{return ({...state,loggedin:!state.loggedin})})}} >
                     <i className="fas fa-sign-in-alt "></i>
                     <span className="font-bold sm:text-semibold">SignIn</span>
                     </div>
-                    }
+                    </Link> 
+
+
+                    {/* } */}
 
             </div>
             

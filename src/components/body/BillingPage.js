@@ -1,5 +1,5 @@
 import React from 'react'
-import Checkout from './payment/Checkout'
+import Checkout from '../payment/Checkout'
 
 function BillingPage() {
     return (

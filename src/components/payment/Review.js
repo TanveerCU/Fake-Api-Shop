@@ -8,8 +8,9 @@ import Grid from '@material-ui/core/Grid';
 import { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
-import {tempInvoice} from '../../../redux/actions/productAction'
+import {tempInvoice} from '../../redux/actions/productAction'
 import { useDispatch } from 'react-redux';
+import rn from 'random-number';
 
 
 

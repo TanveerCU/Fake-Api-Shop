@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Card } from '../utils/Card';
 import { useDisplay } from '../helper/helper_function';
+import Loading from '../utils/Loading';
 
 
 function Allproducts() {
@@ -29,7 +30,7 @@ function Allproducts() {
             }
         </div>
         :
-        <div className="text-2xl text-center mt-10 text-blue-900 text-bold">Loading...</div>
+        <Loading />
 
         }
         </>

@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FillMessage({clicked,rendered}) {
+export default function FillMessage({clicked,rendered,msg}) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
@@ -45,7 +45,7 @@ export default function FillMessage({clicked,rendered}) {
   
       <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
         <Alert onClose={handleClose} severity="error">
-          Fill All The Field
+          {msg}
         </Alert>
       </Snackbar>
     </div>

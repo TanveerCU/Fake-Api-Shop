@@ -96,3 +96,23 @@ export const formtemporaryInvoice = (state = tempinvoiceData ,{type,payload})=>{
     }
 
 }
+
+export const signInReducer = (state = "" ,{type,payload})=>{
+    switch (type) {
+        case ActionTypes.SIGNIN:
+            return payload;
+        default:
+            return state;
+    }
+
+}
+
+export const signUpReducer = (state = '' ,{type,payload})=>{
+    switch (type) {
+        case ActionTypes.SIGNUP:
+            return payload;
+        default:
+            return state;
+    }
+
+}

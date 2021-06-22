@@ -3,9 +3,9 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { useState, useEffect } from 'react';
-import FillMessage from '../../utils/FillMessage';
+import FillMessage from '../utils/FillMessage';
 import { useDispatch,useSelector } from 'react-redux';
-import { paymentInfo } from '../../../redux/actions/productAction';
+import { paymentInfo } from '../../redux/actions/productAction';
 
 export default function PaymentForm({click,render}) {
   console.log("payment render");

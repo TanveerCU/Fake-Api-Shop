@@ -7,6 +7,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store';
 import Practice from './Practice';
 import Testing from './Testing'
+
  
 ReactDOM.render(
   <>
@@ -16,6 +17,7 @@ ReactDOM.render(
 
     {/* <Practice /> */}
     {/* <Testing/> */}
+
 
   </>,
   document.getElementById('root')

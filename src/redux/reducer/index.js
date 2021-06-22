@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { productReducer,cartList, showProductsReducer,formAddress,formPayment,formInvoice,formtemporaryInvoice } from "./productReducer";
+import {signUpReducer , signInReducer, productReducer,cartList, showProductsReducer,formAddress,formPayment,formInvoice,formtemporaryInvoice } from "./productReducer";
 
 export const rootReducer = combineReducers({
     allProducts: productReducer,
@@ -8,7 +8,10 @@ export const rootReducer = combineReducers({
     cartList,
     formAddress,
     formPayment,
-    formInvoice
+    formInvoice,
+    signUpReducer,
+    signInReducer
+
 });
 
 

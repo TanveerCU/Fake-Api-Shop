@@ -5,9 +5,9 @@ import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { useState, useEffect } from 'react';
-import FillMessage from '../../utils/FillMessage';
+import FillMessage from '../utils/FillMessage';
 import { useDispatch } from 'react-redux';
-import { formAddress } from '../../../redux/actions/productAction';
+import { formAddress } from '../../redux/actions/productAction';
 
 
 
@@ -23,7 +23,7 @@ export default function AddressForm({click,render}) {
     const [zipCode, setzipCode] = useState('');
     const [country, setcountry] = useState('');
     const [checkBox,setcheckBox] = useState(false)
-    const [allFill, setallFill] = useState(false);
+    const [msgRender, setmsgRender] = useState(false);
     const dispatch = useDispatch();
 
 
@@ -32,23 +32,13 @@ export default function AddressForm({click,render}) {
     
 
     
-
- 
-    // console.log(firstName);
-    // console.log(lastName);
-    // console.log(address);
-    // console.log(city);
-    // console.log(state);
-    // console.log(zipCode);
-    // console.log(country);
-    // console.log(checkBox);
-    console.log("allFil: ", allFill);
+    console.log("allFil: ", msgRender);
 
     const check=()=>{
       if(firstName==='' || lastName ===''|| address===''|| city===''|| state===''|| zipCode===''|| country==='')
       {
         console.log("fill all the field");
-        setallFill(!allFill);
+        setmsgRender(!msgRender);
       }else{
         const data ={
           firstName,
@@ -153,7 +143,7 @@ export default function AddressForm({click,render}) {
           />
         </Grid>
       </Grid>
-      <FillMessage clicked={click} rendered={allFill}/>
+      <FillMessage clicked={click} rendered={msgRender}/>
 
 
     </React.Fragment>
