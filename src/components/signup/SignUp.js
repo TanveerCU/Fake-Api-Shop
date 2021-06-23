@@ -13,7 +13,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import FillMessage from '../utils/FillMessage';
 import { useEffect, useState } from 'react';
-import { useSignUp } from './signupLogic';
+import { signUp } from '../../redux/actions/productAction';
+import { useDispatch, useSelector } from 'react-redux';
+import  { Redirect } from 'react-router-dom';
+import Loading from '../utils/Loading';
+import axios from 'axios';
+
 
 
 
@@ -38,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+
+
 export default function SignUp() {
   const classes = useStyles();
 
@@ -48,13 +55,45 @@ export default function SignUp() {
   const [click, setclick] = useState(false);
   const [render, setrender] = useState(false);
   const [msgRender, setmsgRender] = useState(false);
+  
+  const [length, setlength] = useState(false);
+  const signUpState = useSelector(state => state.signUpReducer);
+  console.log(signUpState);
+ 
+  const dispatch = useDispatch();
 
-  const signUp = useSignUp(firstName,lastName,email,password,click,render);
+
+
+  const callSignUpAPI = async()=>{
+          try{
+
+            dispatch(signUp(''));
+            const signUpInfo = {firstName,lastName,email,password};
+            const {data}= await axios.post("https://fakestoreapi.com/users",signUpInfo)
+            if(data.status === 'Error'){
+              dispatch(signUp('false'));
+            }else{
+              dispatch(signUp('true'));
+            }
+  
+          }catch(err){
+            dispatch(signUp('false'));
+          }
+  }
 
   useEffect(()=>{
-    if(click){setmsgRender(!msgRender)}
-  },[signUp])
-  // console.log("login: ",login);
+
+    if( click ){
+      if(firstName.length && lastName.length &&password.length && email.length){
+        setlength(true)
+        callSignUpAPI();
+    }else{
+      setlength(false);
+      setmsgRender(!msgRender);
+    }
+  }
+  },[click,render])
+
 
 
 
@@ -64,7 +103,25 @@ export default function SignUp() {
 
 
   return (
-    <Container component="main" maxWidth="xs">
+    <>
+
+
+{
+      (click && length && (signUpState==='') )?
+      <Loading clicked={click} rendered={render}/>
+
+      :
+
+      <>
+     {
+       (signUpState==='true' ||  (localStorage.getItem('signUpState') === 'true')) ?
+       <Redirect to='/signin' />
+
+       :
+
+
+
+    (<Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
@@ -142,8 +199,29 @@ export default function SignUp() {
           </Grid>
         </form>
       </div>
-      <FillMessage clicked={click} rendered={msgRender}/>
+      
 
-    </Container>
+    </Container>)
+}
+</>
+
+}
+
+
+
+
+{
+  (click && length && signUpState==='false') ?
+  <FillMessage clicked={click} rendered={msgRender} msg={'May be Account exist Try Again'}/>
+  :
+  ""
+  }
+  {
+  (click && !length && (signUpState==='false' || signUpState==='')) ?
+  <FillMessage clicked={click} rendered={msgRender} msg={'All Field Required'}/>
+  :
+  ""
+  }
+  </>
   );
 }

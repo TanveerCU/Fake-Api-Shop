@@ -52,6 +52,7 @@ export default function SignIn() {
   const logIn = useSelector(state => state.signInReducer);
   console.log("login Reducer: ",logIn);
   const dispatch = useDispatch();
+  console.log(localStorage.getItem('login'));
 
 
   const callLogInAPI = async()=>{
@@ -60,12 +61,16 @@ export default function SignIn() {
             dispatch(signIn(''));
             const loginfo = {username,password};
             const {data}= await axios.post("https://fakestoreapi.com/auth/login",loginfo)
-            console.log(data);
-            dispatch(signIn('true'));
+            if(data.status === 'Error'){
+              dispatch(signIn('false'));
+            }else{
+              localStorage.setItem('login','true');
+              dispatch(signIn('true'));
+
+            }
   
           }catch(err){
             dispatch(signIn('false'));
-            console.log(err);
           }
   }
 
@@ -88,21 +93,13 @@ export default function SignIn() {
 
     {
       (click && length && (logIn==='') )?
-
-      // <Redirect to='/' />
-     
       <Loading clicked={click} rendered={render}/>
-
-
 
       :
 
-
-
       <>
      {
-       (logIn==='true') ?
-
+       (logIn==='true' ||  (localStorage.getItem('login') === 'true')) ?
        <Redirect to='/' />
 
        :
@@ -164,7 +161,13 @@ export default function SignIn() {
           </Grid>
         </form>
       </div>
-      <FillMessage clicked={click} rendered={msgRender} msg={'All Field Required'}/>
+    </Container> )
+
+     } 
+     </>
+    
+    }
+   
 
 
       {
@@ -173,17 +176,12 @@ export default function SignIn() {
       :
       ""
       }
-    </Container>
-
-    
-       )
-
-     } 
-       
-     </>
-
-    
-    }
+      {
+      (click && !length && (logIn==='false' || logIn==='')) ?
+      <FillMessage clicked={click} rendered={msgRender} msg={'All Field Required'}/>
+      :
+      ""
+      }
     </>
   );
 }

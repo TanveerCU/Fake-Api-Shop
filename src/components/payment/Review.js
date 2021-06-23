@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import {tempInvoice} from '../../redux/actions/productAction'
 import { useDispatch } from 'react-redux';
-import rn from 'random-number';
+
 
 
 
@@ -148,10 +148,8 @@ useEffect(() => {
       </>
       )
       :
-      <div>Loading</div>
-
-
-            
+      <div>Loading....</div>
+       
             }
 
 

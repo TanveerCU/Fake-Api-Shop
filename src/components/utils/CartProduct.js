@@ -71,7 +71,7 @@ function CartProduct() {
 
 
   const products = useSelector(state => state.cartList.products)
-  console.log(products);
+ 
   const [total, settotal] = useState(0);
   const totalfunc = ()=>{
     let total = 0;

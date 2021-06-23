@@ -24,7 +24,6 @@ export default function PaymentForm({click,render}) {
     const check=()=>{
       if(ccName==='' || ccNumber===''|| ccExpr===''|| ccv===''|| address==='')
       {
-        console.log("fill all the field");
         setallFill(!allFill);
       }else{
         const data ={
@@ -45,7 +44,6 @@ export default function PaymentForm({click,render}) {
   useEffect(() => {
     if(click){
       check();
-      console.log("checked");
     }
     if(cardAddress.checkBox){setaddress("filled")}
 

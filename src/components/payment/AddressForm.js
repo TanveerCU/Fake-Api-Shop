@@ -28,16 +28,10 @@ export default function AddressForm({click,render}) {
 
 
  
-    console.log("Clicked", click);
-    
-
-    
-    console.log("allFil: ", msgRender);
 
     const check=()=>{
       if(firstName==='' || lastName ===''|| address===''|| city===''|| state===''|| zipCode===''|| country==='')
       {
-        console.log("fill all the field");
         setmsgRender(!msgRender);
       }else{
         const data ={
@@ -61,7 +55,6 @@ export default function AddressForm({click,render}) {
   useEffect(() => {
     if(click){
       check();
-      console.log("checked");
     }
   }, [click,render]);  
     

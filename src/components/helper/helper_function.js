@@ -50,8 +50,7 @@ export function useLoadProducts(){
 
 //// Filterin Data in order to item number, sorting, category (it will filter displayProducts redux-store)
 export function useFilter(cat,sort,num,products){
-    console.log(cat," ",sort," ",num);
-    console.log(products.length);
+
     let newArr = [];
  
 
@@ -61,7 +60,7 @@ export function useFilter(cat,sort,num,products){
 
         if(cat !== 'all'){
             products = products.filter((product)=>{return product.category === cat;})
-            console.log("cat:",products);
+          
             if(Object.keys(products).length <= num ){
                 num = Object.keys(products).length;
             }
@@ -81,7 +80,7 @@ export function useFilter(cat,sort,num,products){
 
             
             dispatch(showProducts(newArr));
-            console.log(newArr)
+
 
     }
     
@@ -166,7 +165,7 @@ export function useProductDetail (id){
 
     const products = useFetchAllProducts();
     const [data, setdata] = useState({})
-    console.log("All products", products);
+
 
     const loadDetaildata = ()=>{
 

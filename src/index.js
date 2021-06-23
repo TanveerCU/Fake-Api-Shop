@@ -5,19 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import { store } from './redux/store';
-import Practice from './Practice';
-import Testing from './Testing'
+
 
  
 ReactDOM.render(
   <>
+  
     <Provider store={store}>
     <App />
     </Provider> 
-
-    {/* <Practice /> */}
-    {/* <Testing/> */}
-
 
   </>,
   document.getElementById('root')

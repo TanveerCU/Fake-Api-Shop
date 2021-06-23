@@ -5,10 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { useState, useEffect } from 'react';
-// import { useEffect,useState } from 'react';
-// import {useDispatch } from 'react-redux';
-// import { setProducts } from '../../redux/actions/productAction'
-
 import axios from 'axios';
 import { useFetchAllProducts, useLoadProducts, useFilter } from '../helper/helper_function';
 
