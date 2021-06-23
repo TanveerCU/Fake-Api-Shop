@@ -107,7 +107,7 @@ export default function PaymentForm({click,render}) {
           }
         </Grid>
       </Grid>
-      <FillMessage clicked={click} rendered={allFill}/>
+      <FillMessage clicked={click} rendered={allFill} msg={'All Field Required'}/>
     </React.Fragment>
   );
 }

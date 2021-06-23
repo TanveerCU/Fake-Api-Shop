@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Card } from '../utils/Card';
 import { useDisplay } from '../helper/helper_function';
 import Loading from '../utils/Loading';
